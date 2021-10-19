@@ -6,7 +6,7 @@
           <h1 class="text-h6" v-text="page_title" />
         </v-col>
         <v-col cols="12" xs="12" md="2" class="text-right">
-          <BaseBtn
+          <BtnCircle
             tLabel="Atrás"
             tPosition="bottom"
             icon="mdi-arrow-left"
@@ -36,14 +36,11 @@
                   :rules="rules.name"
                   type="text"
                 />
-                <v-select
-                  label="Rol*"
-                  v-model="data.role_id"
-                  :rules="rules.role_id"
-                  :items="roles"
-                  item-value="id"
-                  :item-text="(item) => item.name"
-                  :loading="roles_loading"
+                <DatePicker
+                  label="Fecha de nacimiento"
+                  :model.sync="data.birthday"
+                  :rules="rules.birthday"
+                  clean
                 />
               </v-card-text>
             </v-card>
@@ -55,6 +52,15 @@
               </v-card-title>
               <v-divider />
               <v-card-text>
+                <v-select
+                  label="Rol*"
+                  v-model="data.role_id"
+                  :rules="rules.role_id"
+                  :items="roles"
+                  item-value="id"
+                  :item-text="(item) => item.name"
+                  :loading="roles_loading"
+                />
                 <v-text-field
                   label="Correo electrónico*"
                   v-model="data.email"
@@ -74,7 +80,7 @@
             </v-card>
           </v-col>
           <v-col cols="12" xs="12" class="text-right">
-            <BaseBtn
+            <BtnCircle
               :tLabel="store_mode ? 'Crear' : 'Editar'"
               tPosition="top"
               :icon="store_mode ? 'mdi-plus' : 'mdi-pencil'"
@@ -96,11 +102,13 @@ import { catalog } from "../../requests/catalogRequest";
 import { storeUpdate, show } from "../../requests/pageRequest";
 import { msgConfirm, msgAlert } from "../../control";
 //import components
-import BaseBtn from "../../components/BaseBtn.vue";
+import BtnCircle from "../../components/BtnCircle.vue";
+import DatePicker from "../../components/DatePicker.vue";
 
 export default {
   components: {
-    BaseBtn,
+    BtnCircle,
+    DatePicker,
   },
   data() {
     return {
@@ -115,6 +123,7 @@ export default {
       //data for api
       data: {
         name: "",
+        birthday: "",
         email: "",
         password: "",
         role_id: "",
@@ -126,6 +135,7 @@ export default {
           (v) => (v && v.length <= 95) || "Máximo 95 caracteres",
           (v) => (v && v.length >= 2) || "Mínimo 2 caracteres",
         ],
+        birthday: [(v) => !!v || "Campo requerido"],
         email: [
           (v) => !!v || "Campo requerido",
           (v) => (v && v.length <= 65) || "Máximo 65 caracteres",

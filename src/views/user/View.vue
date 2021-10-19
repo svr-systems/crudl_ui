@@ -6,7 +6,7 @@
           <h1 class="text-h6" v-text="page_title" />
         </v-col>
         <v-col cols="12" xs="12" md="2" class="text-right">
-          <BaseBtn
+          <BtnCircle
             tLabel="Atrás"
             tPosition="bottom"
             icon="mdi-arrow-left"
@@ -34,9 +34,9 @@
                 <span v-text="data.name" />
               </p>
               <p>
-                <span class="text-caption font-weight-bold" v-text="'Rol'" />
+                <span class="text-caption font-weight-bold" v-text="'Fecha de nacimiento'" />
                 <br />
-                <span v-text="data.role_name" />
+                <span v-text="data.birthday" />
               </p>
             </v-card-text>
           </v-card>
@@ -48,6 +48,11 @@
             </v-card-title>
             <v-divider />
             <v-card-text>
+              <p>
+                <span class="text-caption font-weight-bold" v-text="'Rol'" />
+                <br />
+                <span v-text="data.role_name" />
+              </p>
               <p>
                 <span
                   class="text-caption font-weight-bold"
@@ -89,7 +94,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" xs="6" md="6">
-          <BaseBtn
+          <BtnCircle
             tLabel="Desactivar"
             tPosition="top"
             icon="mdi-delete"
@@ -100,7 +105,7 @@
           />
         </v-col>
         <v-col cols="12" xs="6" md="6" class="text-right">
-          <BaseBtn
+          <BtnCircle
             tLabel="Editar"
             tPosition="top"
             icon="mdi-pencil"
@@ -119,11 +124,11 @@
 import { show, destroy } from "../../requests/pageRequest";
 import { msgConfirm, msgAlert } from "../../control";
 //import components
-import BaseBtn from "../../components/BaseBtn.vue";
+import BtnCircle from "../../components/BtnCircle.vue";
 
 export default {
   components: {
-    BaseBtn,
+    BtnCircle,
   },
   data() {
     return {

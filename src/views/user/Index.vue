@@ -6,7 +6,7 @@
           <span v-text="`${page_title} (${total_rows})`" />
         </v-col>
         <v-col cols="12" xs="12" md="2" class="text-right">
-          <BaseBtn
+          <BtnCircle
             tLabel="Crear"
             tPosition="bottom"
             icon="mdi-plus"
@@ -63,11 +63,11 @@
 //import functions
 import { index } from "../../requests/pageRequest";
 //import components
-import BaseBtn from "../../components/BaseBtn.vue";
+import BtnCircle from "../../components/BtnCircle.vue";
 
 export default {
   components: {
-    BaseBtn,
+    BtnCircle,
   },
   data() {
     return {

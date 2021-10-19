@@ -36,7 +36,7 @@
                   @keyup.enter="handleSubmit"
                 />
                 <div class="text-right">
-                  <BaseBtn
+                  <BtnCircle
                     tLabel="Aceptar"
                     tPosition="bottom"
                     icon="mdi-check"
@@ -60,11 +60,11 @@
 import { logIn } from "../../requests/authRequest";
 import { msgAlert } from "../../control";
 //import components
-import BaseBtn from "../../components/BaseBtn.vue";
+import BtnCircle from "../../components/BtnCircle.vue";
 
 export default {
   components: {
-    BaseBtn,
+    BtnCircle,
   },
   data: () => ({
     page_title: "Iniciar Sesión",
