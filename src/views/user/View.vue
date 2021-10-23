@@ -28,13 +28,24 @@
             </v-card-title>
             <v-divider />
             <v-card-text>
+              <ImgAvatar
+                :src="
+                  data.avatar_file
+                    ? 'http://127.0.0.1:8000/storage/' + data.avatar_file
+                    : require('@/assets/user.jpg')
+                "
+              />
+
               <p>
                 <span class="text-caption font-weight-bold" v-text="'Nombre'" />
                 <br />
                 <span v-text="data.name" />
               </p>
               <p>
-                <span class="text-caption font-weight-bold" v-text="'Fecha de nacimiento'" />
+                <span
+                  class="text-caption font-weight-bold"
+                  v-text="'Fecha de nacimiento'"
+                />
                 <br />
                 <span v-text="data.birthday" />
               </p>
@@ -125,10 +136,12 @@ import { show, destroy } from "../../requests/pageRequest";
 import { msgConfirm, msgAlert } from "../../control";
 //import components
 import BtnCircle from "../../components/BtnCircle.vue";
+import ImgAvatar from "../../components/ImgAvatar.vue";
 
 export default {
   components: {
     BtnCircle,
+    ImgAvatar,
   },
   data() {
     return {

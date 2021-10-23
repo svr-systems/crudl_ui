@@ -5,13 +5,13 @@
     </v-navigation-drawer>
 
     <v-card>
-      <v-toolbar dense color="grey darken-3" class="toolbar white--text">
+      <v-toolbar dense color="blue darken-2" class="toolbar white--text">
         <v-app-bar-nav-icon
           v-if="login.auth"
           class="white--text"
           @click="drawer = true"
         />
-        <v-toolbar-title v-text="'Filamentos'" />
+        <v-toolbar-title v-text="title" />
         <v-spacer />
         <v-btn v-if="login.auth" icon dark>
           <v-icon v-text="'mdi-bell'" />
@@ -41,6 +41,7 @@ export default {
   },
   data() {
     return {
+      title: "Sinergia Médica",
       drawer: false,
       login: this.$store.getters.getLogin,
     };

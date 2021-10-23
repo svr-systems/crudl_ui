@@ -45,7 +45,7 @@ export const show = async (api_url, token, id) => {
         const response = await Axios.get(`${URL_API}/${api_url}/${id}`, headersToken(token))
 
         if (response.data.success) {
-            return (response.data.data[0])
+            return (response.data.data)
         } else {
             console.log(response.data.message)
         }

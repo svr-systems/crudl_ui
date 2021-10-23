@@ -30,6 +30,13 @@
               </v-card-title>
               <v-divider />
               <v-card-text>
+                <FileInputAvatar
+                  v-if="store_mode"
+                  label="Imagen de perfil"
+                  :model.sync="data.avatar_file"
+                  :rules="rules.avatar_file"
+                  accept="image/jpeg"
+                />
                 <v-text-field
                   label="Nombre*"
                   v-model="data.name"
@@ -104,11 +111,13 @@ import { msgConfirm, msgAlert } from "../../control";
 //import components
 import BtnCircle from "../../components/BtnCircle.vue";
 import DatePicker from "../../components/DatePicker.vue";
+import FileInputAvatar from "../../components/FileInputAvatar.vue";
 
 export default {
   components: {
     BtnCircle,
     DatePicker,
+    FileInputAvatar,
   },
   data() {
     return {
@@ -122,6 +131,7 @@ export default {
       loading: false,
       //data for api
       data: {
+        avatar_file: null,
         name: "",
         birthday: "",
         email: "",
@@ -130,6 +140,9 @@ export default {
       },
       //rules form data
       rules: {
+        avatar_file: [
+          (v) => !v || v.size < 2000000 || "El archivo debe ser menor a 2 MB",
+        ],
         name: [
           (v) => !!v || "Campo requerido",
           (v) => (v && v.length <= 95) || "Máximo 95 caracteres",
@@ -152,6 +165,7 @@ export default {
       roles_loading: true,
       //password type and icon
       show_password: false,
+      url: "",
     };
   },
   mounted() {
@@ -209,6 +223,8 @@ export default {
                     })
                   : console.log(response.message);
               });
+
+              this.loading = false;
             }
           });
       } else {
@@ -218,6 +234,13 @@ export default {
             "Formulario invalido, revisa los detalles señalados"
           )
         );
+      }
+    },
+    previewImage() {
+      if (this.data.avatar_file) {
+        this.url = URL.createObjectURL(this.data.avatar_file);
+      } else {
+        this.url = "";
       }
     },
   },

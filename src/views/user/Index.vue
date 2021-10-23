@@ -34,7 +34,6 @@
             :items="data"
             :search="search"
             :loading="loading"
-            loading-text="Cargando, espere un momento..."
           >
             <template v-slot:item.action="{ item }">
               <v-tooltip left>
